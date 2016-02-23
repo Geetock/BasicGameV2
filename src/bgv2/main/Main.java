@@ -6,18 +6,17 @@ import java.awt.GraphicsEnvironment;
 import my.project.gop.main.GameWindow;
 import bgv2.gameloop.GameLoop;
 import bgv2.managers.MouseManager;
-import bgv2.ref.Assets;
 import bgv2.ref.Reference;
 
 public class Main {
-	
-	public static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		
 	public static int width;
 	public static int height;
 	
 	public static void main(String[] args) {
 		
 		if (Reference.FULLSCREEN) {
+			GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 			width = gd.getDisplayMode().getWidth();
 			height = gd.getDisplayMode().getHeight();
 		}

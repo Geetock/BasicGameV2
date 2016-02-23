@@ -11,6 +11,8 @@ public class KeyManager implements KeyListener {
 	public static boolean down;
 	
 	public static boolean firing;
+	
+	public static boolean escape = false;
 
 	public KeyManager() {
 		// TODO Auto-generated constructor stub
@@ -35,6 +37,9 @@ public class KeyManager implements KeyListener {
 		}
 		if (keyCode == KeyEvent.VK_Z) {
 			firing = true;
+		}
+		if (keyCode == KeyEvent.VK_ESCAPE) {
+			escape = true;
 		}
 	}
 

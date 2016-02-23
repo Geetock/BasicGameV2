@@ -5,6 +5,7 @@ import java.awt.GraphicsEnvironment;
 
 import my.project.gop.main.GameWindow;
 import bgv2.gameloop.GameLoop;
+import bgv2.managers.KeyManager;
 import bgv2.managers.MouseManager;
 import bgv2.ref.Reference;
 
@@ -33,7 +34,8 @@ public class Main {
 
 		frame.addMouseListener(new MouseManager());
 		frame.addMouseMotionListener(new MouseManager());
-		frame.addMouseWheelListener(new MouseManager());		
+		frame.addMouseWheelListener(new MouseManager());
+		frame.addKeyListener(new KeyManager());
 		
 		frame.add(new GameLoop(width, height));
 		frame.setVisible(true);

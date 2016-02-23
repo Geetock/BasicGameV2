@@ -9,7 +9,9 @@ public class Reference {
 	public static final String NAME = "Space Shooter";
 
 	
-	// other stuff
+	// Player stuff
+	public static final int PLAYER_WIDTH = 48;
+	public static final int PLAYER_HEIGHT = 48;
 	
 	// TODO
 }

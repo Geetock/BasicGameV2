@@ -10,8 +10,8 @@ public class Reference {
 
 	
 	// Player stuff
-	public static final int PLAYER_WIDTH = 48;
-	public static final int PLAYER_HEIGHT = 48;
+	public static final int PLAYER_WIDTH = 32;
+	public static final int PLAYER_HEIGHT = 32;
 	
 	// TODO
 }

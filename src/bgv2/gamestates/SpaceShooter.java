@@ -1,8 +1,9 @@
 package bgv2.gamestates;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 
+import bgv2.entety.enemy.BasicEnemy;
 import bgv2.entety.player.Player;
 import bgv2.gamestate.GameState;
 import bgv2.gamestate.GameStateManager;
@@ -14,6 +15,9 @@ public class SpaceShooter extends GameState {
 	private boolean isPaused;
 	
 	Player player = new Player(Reference.WIDTH / 2, Reference.HEIGHT / 2);
+	BasicEnemy e1 = new BasicEnemy(1, Reference.WIDTH / 5, 200);
+	BasicEnemy e2 = new BasicEnemy(2, Reference.WIDTH / 4, 200);
+	BasicEnemy e3 = new BasicEnemy(3, Reference.WIDTH / 3, 200);
 	
 	public SpaceShooter(GameStateManager gsm) {
 		super(gsm);
@@ -39,18 +43,24 @@ public class SpaceShooter extends GameState {
 			gsm.states.pop();
 		}
 		
-		player.update();
+		player.tick();
+		e1.tick();
+		e2.tick();
+		e3.tick();
 	}
 
 	@Override
 	public void render(Graphics2D g) {
 				
+		g.setColor(new Color(50, 0, 170));
+		g.fillRect(0, 0, Reference.WIDTH, Reference.HEIGHT);
+		
 		player.render(g);
+		e1.render(g);
+		e2.render(g);
+		e3.render(g);
 	}
 
-public void keyTyped(KeyEvent key) {
-		
-	}
 	
 
 }

@@ -12,26 +12,25 @@ import bgv2.ref.Reference;
 public class Player extends Entety {
 
 	// FIELDS
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 	
 	private BufferedImage playerImg;
 	
-	private int dx;
-	private int dy;
-	private int speed;
-	
+	private double dx;
+	private double dy;
+	private double speed;
+
 	private long firingTimer;
 	private long firingDelay;
 	
-	private boolean isFiring = false;
 	private boolean recovering = false;
 	private long recoveryTimer;
 	
 	private int lives;
 	private int score;	
 	
-	public Player(int posX, int posY) {
+	public Player(double posX, double posY) {
 		this.x = posX;
 		this.y = posY;
 		
@@ -47,8 +46,8 @@ public class Player extends Entety {
 		playerImg = Assets.getPlayer();
 	}
 	
-	public int getX() { return x; }
-	public int getY() { return y; }
+	public double getX() { return x; }
+	public double getY() { return y; }
 	
 	public int getLives() { return lives; }	
 	public int getScore() { return score; }
@@ -69,39 +68,52 @@ public class Player extends Entety {
 	}
 
 	@Override
-	public void update() {
+	public void tick() {
 		
+		// Normal movement
 		if (KeyManager.left) {
-			dx -= speed;
+			dx = -speed;
 		}
 		if (KeyManager.right) {
-			dx += speed;
+			dx = speed;
 		}
 		if (KeyManager.down) {
-			dy += speed;
+			dy = speed;
 		}
 		if (KeyManager.up) {
-			dy -= speed;
-		}
-		if (KeyManager.firing) {
-			isFiring = true;
-		}
-		else {
-			isFiring = false;
+			dy = -speed;
 		}
 		
+		// compensating for diagonal speed;
+		if (KeyManager.left && (KeyManager.up || KeyManager.down)) {
+			dx =  speed * -0.75;
+		}
+		if (KeyManager.right && (KeyManager.up || KeyManager.down)) {
+			dx = speed * 0.75;
+		}
+		if (KeyManager.down && (KeyManager.left || KeyManager.right)) {
+			dy = speed * 0.75;
+		}
+		if (KeyManager.up && (KeyManager.left || KeyManager.right)) {
+			dy = speed * -0.75;
+		}
+		
+		// sets the speed
 		x += dx;
 		y += dy;
 		
+		// check out of bounds
 		if (x < 0) x = 0;
 		if (y < 0) y = 0;
 		if (x > Reference.WIDTH - Reference.PLAYER_WIDTH - 1) x = Reference.WIDTH - Reference.PLAYER_WIDTH - 1;
-		if (y > Reference.HEIGHT - 80) y = Reference.HEIGHT - 80;
+		if (y > Reference.HEIGHT - 2 * Reference.PLAYER_HEIGHT) y = Reference.HEIGHT - 2 * Reference.PLAYER_HEIGHT;
 		
+		// reset the speed variables so no continued acceleration
 		dx = 0;
 		dy = 0;
 		
-		if (isFiring) {			
+		// check if firing and keep tracks of the delay.
+		if (KeyManager.firing) {			
 			long elapsed = (System.nanoTime() - firingTimer) / 1000000;
 			
 			if (elapsed > firingDelay) {
@@ -123,7 +135,7 @@ public class Player extends Entety {
 
 	@Override
 	public void render(Graphics2D g) {
-		g.drawImage(playerImg, x, y, Reference.PLAYER_WIDTH, Reference.PLAYER_HEIGHT, null);
+		g.drawImage(playerImg, (int) x, (int) y, Reference.PLAYER_WIDTH, Reference.PLAYER_HEIGHT, null);
 	}
 
 }

@@ -1,5 +1,6 @@
 package bgv2.gamestate;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -81,6 +82,7 @@ public class GameStateButton extends Rectangle{
 		
 		g.drawImage(defaultImage, (int)pos.xpos, (int)pos.ypos, width, height, null);
 		
+		g.setColor(Color.WHITE);
 		g.setFont(font);
 		AffineTransform at = new AffineTransform();
 		FontRenderContext frc = new FontRenderContext(at, true, true);

@@ -6,6 +6,7 @@ import my.project.gop.main.ImageLoader;
 
 public class Assets {
 	
+	// SPRITESHEETS
 	private static SpriteSheet bars = new SpriteSheet();
 	private static SpriteSheet entety = new SpriteSheet();
 	
@@ -16,7 +17,6 @@ public class Assets {
 	private static BufferedImage basic_e1;
 	private static BufferedImage basic_e2;
 	private static BufferedImage basic_e3;
-	
 	
 	// BUTTONS
 	private static BufferedImage button_heldover;

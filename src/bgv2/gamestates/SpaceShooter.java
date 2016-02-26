@@ -52,7 +52,7 @@ public class SpaceShooter extends GameState {
 	@Override
 	public void render(Graphics2D g) {
 				
-		g.setColor(new Color(50, 0, 170));
+		g.setColor(new Color(35, 0, 170));
 		g.fillRect(0, 0, Reference.WIDTH, Reference.HEIGHT);
 		
 		player.render(g);
